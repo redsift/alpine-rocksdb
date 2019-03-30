@@ -6,11 +6,12 @@ jobs:
       CONTAINER_NAME: quay.io/redsift/alpine-rocksdb
       CIRCLE_REVERSE_DEPENDENCIES: baseos-alpine
 
-    machine:
-      enabled: true
+    docker:
+      - image: docker:18.09.4-git
 
     steps:
       - checkout
+      - setup_remote_docker
       - run:
           name: Log in to quay.io
           command: |
