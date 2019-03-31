@@ -32,8 +32,9 @@ jobs:
       - run:
           name: Trigger builds of dependent projects
           command: |
-            PROJECTS=( ${CIRCLE_REVERSE_DEPENDENCIES} )
-            for PROJECT in "${PROJECTS[@]}"; do
+            apk add curl
+            PROJECTS=${CIRCLE_REVERSE_DEPENDENCIES}
+            for PROJECT in ${PROJECTS}; do
               echo "\"${PROJECT}\""
               curl -X POST \
                 --header 'Content-Type: application/json' \
