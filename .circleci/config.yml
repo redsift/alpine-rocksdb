@@ -8,14 +8,13 @@ jobs:
 
     docker:
       - image: docker:18.09.4-git
+        auth:
+          username: $QUAY_USER
+          password: $QUAY_PASS
 
     steps:
       - checkout
       - setup_remote_docker
-      - run:
-          name: Log in to quay.io
-          command: |
-            cat <(echo ${QUAY_PASS}) | docker login -u ${QUAY_USER} --password-stdin -- quay.io
       - run:
           name: Build container
           command: |
