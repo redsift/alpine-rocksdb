@@ -17,6 +17,7 @@ RUN rm rocksdb-${ROCKSDB_DIST_VERSION}.tar.gz rocksdb-${ROCKSDB_DIST_VERSION}.ta
 WORKDIR /usr/local/share/rocksdb-${ROCKSDB_DIST_VERSION}
 
 RUN make static_lib && strip --strip-debug librocksdb.a 
+#ROCKSDB_SHARED# RUN DEBUG_LEVEL=0 make -e shared_lib
 
 RUN mkdir -p /usr/lib && cp -dp librocksdb.* /usr/lib/
 RUN mkdir -p /usr/include/rocksdb && cp -a include/* /usr/include/rocksdb/
