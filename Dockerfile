@@ -1,6 +1,5 @@
-FROM alpine:3.9
-
-LABEL maintainer="Dmitry Motylev<dmitry@redsift.io>"
+ARG VERSION
+FROM alpine:${VERSION}
 
 RUN echo "@testing http://nl.alpinelinux.org/alpine/edge/testing" >>/etc/apk/repositories
 RUN apk add --update --no-cache curl build-base linux-headers git perl bash gflags-dev@testing snappy-dev zlib-dev bzip2-dev lz4-dev zstd-dev
@@ -16,7 +15,7 @@ RUN rm rocksdb-${ROCKSDB_DIST_VERSION}.tar.gz rocksdb-${ROCKSDB_DIST_VERSION}.ta
 
 WORKDIR /usr/local/share/rocksdb-${ROCKSDB_DIST_VERSION}
 
-RUN make static_lib && strip --strip-debug librocksdb.a 
+RUN make static_lib && strip --strip-debug librocksdb.a
 #ROCKSDB_SHARED# RUN DEBUG_LEVEL=0 make -e shared_lib
 
 RUN mkdir -p /usr/lib && cp -dp librocksdb.* /usr/lib/
