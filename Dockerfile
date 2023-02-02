@@ -15,6 +15,8 @@ RUN rm rocksdb-${ROCKSDB_DIST_VERSION}.tar.gz rocksdb-${ROCKSDB_DIST_VERSION}.ta
 
 WORKDIR /usr/local/share/rocksdb-${ROCKSDB_DIST_VERSION}
 
+ENV DISABLE_WARNING_AS_ERROR=1
+ENV EXTRA_CXXFLAGS=-std=c++11
 RUN make static_lib && strip --strip-debug librocksdb.a
 #ROCKSDB_SHARED# RUN DEBUG_LEVEL=0 make -e shared_lib
 
