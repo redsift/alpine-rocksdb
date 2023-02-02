@@ -25,7 +25,7 @@ jobs:
       - run:
           name: Test container
           command: |
-            docker run --entrypoint=sh ${CONTAINER_NAME} true
+            docker run ${CONTAINER_NAME} true
       - run:
           name: Push container to the registry
           command: |

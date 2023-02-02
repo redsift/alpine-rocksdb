@@ -1,8 +1,7 @@
 ARG VERSION
 FROM alpine:${VERSION}
 
-RUN echo "@testing http://nl.alpinelinux.org/alpine/edge/testing" >>/etc/apk/repositories
-RUN apk add --update --no-cache curl build-base linux-headers git perl bash gflags-dev@testing snappy-dev zlib-dev bzip2-dev lz4-dev zstd-dev
+RUN apk add --update --no-cache curl build-base linux-headers git perl bash gflags-dev snappy-dev zlib-dev bzip2-dev lz4-dev zstd-dev
 
 ARG ROCKSDB_DIST_VERSION="5.17.2"
 ARG ROCKSDB_DIST_SHA256="101f05858650a810c90e4872338222a1a3bf3b24de7b7d74466814e6a95c2d28"
